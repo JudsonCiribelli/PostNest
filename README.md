@@ -1,31 +1,36 @@
-# Blog App
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Bem-vindo ao **Blog App**! Este é um projeto de blog onde os usuários podem se cadastrar, fazer login, criar, editar e excluir posts. A aplicação foi construída com **Next.js**, **Node.js**, e **MongoDB**, oferecendo uma experiência interativa e de fácil acesso para gerenciamento de conteúdo.
+## Getting Started
 
-## Funcionalidades
-
-- **Cadastro de Usuário**: Permite que novos usuários se cadastrem na plataforma.
-- **Login de Usuário**: Usuários podem realizar login usando JWT (JSON Web Tokens) para autenticação segura.
-- **CRUD de Posts**: Usuários podem criar, editar e excluir seus próprios posts.
-- **Página de Dashboard**: Cada usuário tem uma página pessoal onde pode visualizar, editar e excluir seus posts.
-- **Visualização de Posts**: Posts podem ser visualizados por qualquer usuário na página inicial.
-
-## Tecnologias Utilizadas
-
-- **Next.js**: Framework React para renderização do lado do servidor (SSR) e geração de sites estáticos (SSG).
-- **Node.js**: Ambiente de execução JavaScript para o backend.
-- **MongoDB**: Banco de dados NoSQL para armazenar dados de usuários e posts.
-- **JWT (JSON Web Tokens)**: Utilizado para autenticação de usuários.
-- **Mongoose**: Biblioteca para facilitar a interação com o MongoDB.
-- **Bcrypt.js**: Biblioteca para criptografar senhas dos usuários.
-- **Styled Components**: Biblioteca para estilização do frontend.
-
-## Instalação
-
-### Pré-requisitos
-
-Antes de rodar o projeto, você precisa ter o **Node.js** instalado na sua máquina. Você pode verificar se o Node.js está instalado com o seguinte comando:
+First, run the development server:
 
 ```bash
-node -v
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
