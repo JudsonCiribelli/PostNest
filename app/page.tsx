@@ -35,7 +35,7 @@ const Home = () => {
     resolver: zodResolver(formSchema),
   });
   return (
-    <div className="container space-y-5 py-5">
+    <div className="1 container space-y-5">
       <Card>
         <CardContent className="flex items-center justify-between p-5">
           <h1>Home</h1>
