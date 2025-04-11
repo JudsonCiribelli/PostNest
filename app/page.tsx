@@ -2,7 +2,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LogInIcon } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 import { Avatar, AvatarImage } from "./_components/ui/avatar";
@@ -22,6 +24,7 @@ import {
   FormMessage,
 } from "./_components/ui/form";
 import { Input } from "./_components/ui/input";
+import { createUser } from "./actions/create-user";
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -29,14 +32,29 @@ const formSchema = z.object({
   password: z.string().min(8),
 });
 
-type FormSchema = z.infer<typeof formSchema>;
+export type FormSchema = z.infer<typeof formSchema>;
 
 const Home = () => {
+  const [isPeding, startTransition] = useTransition();
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
 
   const { data } = useSession();
+
+  const onSubmit = (data: FormSchema) => {
+    startTransition(async () => {
+      try {
+        toast.success("User create Successfully!");
+        await createUser(data);
+        form.reset();
+      } catch (error) {
+        toast.error("An error ocurred while creating the user.");
+        console.log(error);
+      }
+    });
+  };
   return (
     <div className="container space-y-5">
       <Card>
@@ -67,7 +85,7 @@ const Home = () => {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(() => {})} className="space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               <FormField
                 control={form.control}
                 name="name"
@@ -116,7 +134,9 @@ const Home = () => {
                   </FormItem>
                 )}
               />
-              <Button type="submit">Submit</Button>
+              <Button type="submit" disabled={isPeding}>
+                Submit
+              </Button>
             </form>
           </Form>
         </CardContent>
