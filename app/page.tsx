@@ -1,11 +1,11 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LogInIcon } from "lucide-react";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-// import { Avatar, AvatarImage } from "./_components/ui/avatar";
+import { Avatar, AvatarImage } from "./_components/ui/avatar";
 import { Button } from "./_components/ui/button";
 import {
   Card,
@@ -35,16 +35,28 @@ const Home = () => {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
+
+  const { data } = useSession();
   return (
     <div className="container space-y-5">
       <Card>
         <CardContent className="flex items-center justify-between p-5">
           <h1>Home</h1>
           <div>
-            <Button className="gap-x-2" onClick={() => signIn()}>
-              <LogInIcon />
-              Sign in
-            </Button>
+            {!data?.user ? (
+              <Button className="gap-x-2" onClick={() => signIn()}>
+                <LogInIcon />
+                Sign in
+              </Button>
+            ) : (
+              <div className="flex items-center gap-2">
+                <Avatar>
+                  <AvatarImage src={data?.user.image ?? ""} />
+                </Avatar>
+                <span>{data.user.name}</span>
+                <Button onClick={() => signOut()}>Sign Out</Button>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
