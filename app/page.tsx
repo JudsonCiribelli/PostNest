@@ -1,6 +1,7 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LogInIcon } from "lucide-react";
+import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -35,12 +36,12 @@ const Home = () => {
     resolver: zodResolver(formSchema),
   });
   return (
-    <div className="1 container space-y-5">
+    <div className="container space-y-5">
       <Card>
         <CardContent className="flex items-center justify-between p-5">
           <h1>Home</h1>
           <div>
-            <Button className="gap-x-2">
+            <Button className="gap-x-2" onClick={() => signIn()}>
               <LogInIcon />
               Sign in
             </Button>
