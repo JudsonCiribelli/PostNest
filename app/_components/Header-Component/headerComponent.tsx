@@ -1,8 +1,16 @@
+"use client";
+import { LogInIcon } from "lucide-react";
 import Link from "next/link";
+import { signIn, signOut } from "next-auth/react";
+import { useContext } from "react";
 
+import { AppContext } from "@/app/Context/appContext";
+
+import { Avatar, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
 
 const HeaderComponent = () => {
+  const { data } = useContext(AppContext);
   return (
     <header className="flex items-center justify-between p-8">
       <div>
@@ -18,9 +26,21 @@ const HeaderComponent = () => {
           <Button className="mx-4 p-5 text-lg font-normal" asChild>
             <Link href="/">About</Link>
           </Button>
-          <Button className="mx-4 p-5 text-lg font-normal" asChild>
-            <Link href="/">User</Link>
-          </Button>
+
+          {!data?.user ? (
+            <Button className="gap-x-2" onClick={() => signIn()}>
+              <LogInIcon />
+              Sign in
+            </Button>
+          ) : (
+            <div className="flex items-center gap-2">
+              <Avatar>
+                <AvatarImage src="https://github.com/shadcn.png" />
+              </Avatar>
+              <span>{data.user.name}</span>
+              <Button onClick={() => signOut()}>Sign Out</Button>
+            </div>
+          )}
         </div>
       </nav>
     </header>
