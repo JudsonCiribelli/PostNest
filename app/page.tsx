@@ -1,13 +1,10 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { LogInIcon } from "lucide-react";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { useTransition } from "react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-import { Avatar, AvatarImage } from "./_components/ui/avatar";
 import { Button } from "./_components/ui/button";
 import {
   Card,
@@ -25,6 +22,7 @@ import {
 } from "./_components/ui/form";
 import { Input } from "./_components/ui/input";
 import { createUser } from "./actions/create-user";
+import { AppContext } from "./Context/appContext";
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -35,13 +33,11 @@ const formSchema = z.object({
 export type FormSchema = z.infer<typeof formSchema>;
 
 const Home = () => {
-  const [isPeding, startTransition] = useTransition();
+  const { isPending, startTransition } = useContext(AppContext);
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
-
-  const { data } = useSession();
 
   const onSubmit = (data: FormSchema) => {
     startTransition(async () => {
@@ -57,28 +53,6 @@ const Home = () => {
   };
   return (
     <div className="container space-y-5">
-      <Card>
-        <CardContent className="flex items-center justify-between p-5">
-          <h1>Home</h1>
-          <div>
-            {!data?.user ? (
-              <Button className="gap-x-2" onClick={() => signIn()}>
-                <LogInIcon />
-                Sign in
-              </Button>
-            ) : (
-              <div className="flex items-center gap-2">
-                <Avatar>
-                  <AvatarImage src={data?.user.image ?? ""} />
-                </Avatar>
-                <span>{data.user.name}</span>
-                <Button onClick={() => signOut()}>Sign Out</Button>
-              </div>
-            )}
-          </div>
-        </CardContent>
-      </Card>
-
       <Card>
         <CardHeader>
           <CardTitle>Create user</CardTitle>
@@ -134,7 +108,7 @@ const Home = () => {
                   </FormItem>
                 )}
               />
-              <Button type="submit" disabled={isPeding}>
+              <Button type="submit" disabled={isPending}>
                 Submit
               </Button>
             </form>
