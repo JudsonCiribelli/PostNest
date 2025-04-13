@@ -5,6 +5,7 @@ import { Poppins } from "next/font/google";
 
 import SessionsProvider from "@/providers/sessions";
 
+import HeaderComponent from "./_components/Header-Component/headerComponent";
 import { Toaster } from "./_components/ui/sonner";
 
 const poppins = Poppins({
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
+        <HeaderComponent />
         <SessionsProvider>{children}</SessionsProvider>
         <Toaster />
       </body>
