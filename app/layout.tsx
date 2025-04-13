@@ -7,6 +7,7 @@ import SessionsProvider from "@/providers/sessions";
 
 import HeaderComponent from "./_components/Header-Component/headerComponent";
 import { Toaster } from "./_components/ui/sonner";
+import { AppContextProvider } from "./Context/appContextProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -26,8 +27,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
-        <HeaderComponent />
-        <SessionsProvider>{children}</SessionsProvider>
+        <SessionsProvider>
+          <AppContextProvider>
+            <HeaderComponent />
+            {children}
+          </AppContextProvider>
+        </SessionsProvider>
         <Toaster />
       </body>
     </html>
