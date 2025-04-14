@@ -28,7 +28,7 @@ const HeaderComponent = () => {
           </Button>
 
           {!data?.user ? (
-            <Button className="gap-x-2" onClick={() => signIn()}>
+            <Button className="cursor-pointer gap-x-2" onClick={() => signIn()}>
               <LogInIcon />
               Sign in
             </Button>
@@ -38,7 +38,9 @@ const HeaderComponent = () => {
                 <AvatarImage src="https://github.com/shadcn.png" />
               </Avatar>
               <span>{data.user.name}</span>
-              <Button onClick={() => signOut()}>Sign Out</Button>
+              <Button onClick={() => signOut()} className="cursor-pointer">
+                Sign Out
+              </Button>
             </div>
           )}
         </div>
