@@ -11,6 +11,7 @@ import { AppContext } from "./Context/appContext";
 
 const Home = () => {
   const { data } = useContext(AppContext);
+
   if (!data) {
     return <FormComponent />;
   }
