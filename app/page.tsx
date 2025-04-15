@@ -2,11 +2,8 @@
 
 import { useContext } from "react";
 
-import DialogContentData from "./_components/Dialog-Data/dialogData";
 import FormComponent from "./_components/Form-Component/formComponent";
 import { Avatar, AvatarImage } from "./_components/ui/avatar";
-import { Button } from "./_components/ui/button";
-import { Dialog, DialogTrigger } from "./_components/ui/dialog";
 import { AppContext } from "./Context/appContext";
 
 const Home = () => {
@@ -15,6 +12,7 @@ const Home = () => {
   if (!data) {
     return <FormComponent />;
   }
+
   return (
     <div className="flex w-full flex-col items-center justify-center bg-white">
       {/* Card com informações do perfil */}
@@ -27,18 +25,9 @@ const Home = () => {
             <div className="gap-5">
               <h1 className="text-2xl font-semibold">{data.user?.name}</h1>
               <h1 className="text-xl font-semibold">{data.user?.email}</h1>
+              <h1>{data.user?.id}</h1>
             </div>
           </div>
-        </div>
-        <div>
-          <Dialog>
-            <DialogTrigger>
-              <Button className="h-[60px] w-[200px] cursor-pointer">
-                Adicionar posts
-              </Button>
-            </DialogTrigger>
-            <DialogContentData />
-          </Dialog>
         </div>
       </div>
     </div>

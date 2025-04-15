@@ -15,18 +15,11 @@ const HeaderComponent = () => {
     <header className="flex items-center justify-between p-8">
       <div>
         <Link href="/">
-          <h1 className="text-2xl font-semibold">PostNet</h1>
+          <h1 className="text-2xl font-semibold">Login</h1>
         </Link>
       </div>
       <nav>
         <div className="flex items-center justify-between">
-          <Button className="mx-4 p-5 text-lg font-normal" asChild>
-            <Link href="/">Posts</Link>
-          </Button>
-          <Button className="mx-4 p-5 text-lg font-normal" asChild>
-            <Link href="/">About</Link>
-          </Button>
-
           {!data?.user ? (
             <Button className="cursor-pointer gap-x-2" onClick={() => signIn()}>
               <LogInIcon />
