@@ -34,11 +34,12 @@ const HeaderComponent = () => {
             </Button>
           ) : (
             <div className="flex items-center gap-2">
-              <Link href={`/userpage`}>
+              <Link href={`/`}>
                 <Avatar>
                   <AvatarImage src="https://github.com/shadcn.png" />
                 </Avatar>
               </Link>
+              <p>{data.user.name}</p>
               <Button onClick={() => signOut()} className="cursor-pointer">
                 Sign Out
               </Button>

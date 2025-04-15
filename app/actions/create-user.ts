@@ -3,7 +3,7 @@ import bcrypjs from "bcryptjs";
 
 import { prisma } from "@/lib/prisma";
 
-import { FormSchema } from "../page";
+import { FormSchema } from "../_components/Form-Component/formComponent";
 export const createUser = async (data: FormSchema) => {
   //criptografar senha
   const hashedPassword = await bcrypjs.hash(data.password, 8);
