@@ -1,11 +1,7 @@
-"use client";
-
-import FormComponent from "./_components/Form-Component/formComponent";
-
 const Home = () => {
   return (
     <div className="container space-y-5">
-      <FormComponent />
+      <h1>Fetching Posts</h1>
     </div>
   );
 };
